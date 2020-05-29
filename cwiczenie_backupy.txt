@@ -1,0 +1,25 @@
+--zad1
+cd C:\Program Files\PostgreSQL\9.4\bin
+pg_dump -U postgres -Fc firma > firmabackup.sql
+
+--zad2
+Usunięto bazę.
+
+--zad3
+Stworzono ponownie bazę o nazwie firma.
+cd C:\Program Files\PostgreSQL\9.4\bin
+pg_restore -U postgres -d firma "C:\Program Files\PostgreSQL\9.4\bin\firmabackup.sql"
+
+--zad4 i zad5
+Zaistalowano Microsoft SQL Server oraz bazę AdventureWorks
+
+--zad6
+BACKUP DATABASE AdventureWorks2017
+TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\adw2017.bak'
+WITH FORMAT;
+
+--zad7
+CREATE VIEW pracownik_log_dep AS SELECT E.LoginID, D.Name
+FROM AdventureWorks2017.HumanResources.Department D, 
+AdventureWorks2017.HumanResources.Employee E, AdventureWorks2017.HumanResources.EmployeeDepartmentHistory DH
+WHERE D.DepartmentID=DH.DepartmentID AND E.BusinessEntityID = DH.BusinessEntityID;
